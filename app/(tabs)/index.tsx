@@ -115,11 +115,11 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <TopTabBar />
       <UserSearchBar />
-      <FlatList
+      {/* <FlatList
         data={restaurantData}
         renderItem={({ item }) => <ListCard item={item} />}
         keyExtractor={(item) => item.outlet_name}
-      />
+      /> */}
     </View>
   );
 }
@@ -161,9 +161,8 @@ const styles = StyleSheet.create({
   headerBar: {
     flexDirection: "row",
     backgroundColor: "#d1d5db",
-    flex: 1,
     color: "black",
-    minHeight: 50,
+    height: 50,
     justifyContent: "space-between",
     padding: 16,
     alignItems: "center",
@@ -171,7 +170,6 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     flexDirection: "row",
-    flex: 1,
     marginHorizontal: 16,
     paddingLeft: 16,
     paddingRight: 16,
