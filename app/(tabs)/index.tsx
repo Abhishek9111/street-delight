@@ -16,7 +16,7 @@ export default function HomeScreen() {
   const restaurantData = [
     {
       image_url: "https://example.com/images/restaurant1.jpg",
-      outlet_name: "Punjabi Dhaba",
+      outlet_name: "Punjabi Dhaba is a very short name",
       location: "Chandni Chowk",
       rating: 4.5,
       bestseller_food: ["Butter Chicken", "Paneer Tikka", "Lassi"],
@@ -115,11 +115,11 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <TopTabBar />
       <UserSearchBar />
-      {/* <FlatList
+      <FlatList
         data={restaurantData}
         renderItem={({ item }) => <ListCard item={item} />}
         keyExtractor={(item) => item.outlet_name}
-      /> */}
+      />
     </View>
   );
 }
