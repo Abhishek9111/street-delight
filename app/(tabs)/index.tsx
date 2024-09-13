@@ -3,6 +3,7 @@ import {
   Text,
   ScrollView,
   FlatList,
+  TouchableOpacity,
   StyleSheet,
   TextInput,
   Image,
@@ -12,7 +13,11 @@ import {
   UserCircleIcon,
   MagnifyingGlassIcon,
 } from "react-native-heroicons/outline";
+import { useEffect, useState } from "react";
+import OutletDetail from "@/components/Detail Page/OutletDetail";
 export default function HomeScreen() {
+  const [showDetailPage, setShowDetailPage] = useState(false);
+  const [deatilPageDetails, setShowDetailPageDetails] = useState(null);
   const restaurantData = [
     {
       image_url: "https://example.com/images/restaurant1.jpg",
@@ -111,16 +116,34 @@ export default function HomeScreen() {
     },
   ];
 
+  function handleOutletSelect(item: any) {
+    // console.log("item", item);
+    setShowDetailPageDetails(item);
+    setShowDetailPage(true);
+  }
   return (
-    <View style={styles.container}>
-      <TopTabBar />
-      <UserSearchBar />
-      <FlatList
-        data={restaurantData}
-        renderItem={({ item }) => <ListCard item={item} />}
-        keyExtractor={(item) => item.outlet_name}
-      />
-    </View>
+    <>
+      {showDetailPage ? (
+        <OutletDetail />
+      ) : (
+        <View style={styles.container}>
+          <TopTabBar />
+          <UserSearchBar />
+          <FlatList
+            data={restaurantData}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() => handleOutletSelect(item)}
+                activeOpacity={5}
+              >
+                <ListCard item={item} />
+              </TouchableOpacity>
+            )}
+            keyExtractor={(item) => item.outlet_name}
+          />
+        </View>
+      )}
+    </>
   );
 }
 
